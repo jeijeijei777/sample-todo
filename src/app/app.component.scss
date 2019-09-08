@@ -60,6 +60,10 @@
       background: white;
       font-size: 14px;
     }
+
+    .example-box:hover{
+        background-color: #ffc9d7;
+    }
   
     .cdk-drag-preview {
       box-sizing: border-box;

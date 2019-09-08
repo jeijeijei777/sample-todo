@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Observable } from 'rxjs/Observable';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop'; //　<------------追加
 @Component({
   selector: 'app-root',
@@ -7,7 +9,10 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder, ) { }
+  constructor(private formBuilder: FormBuilder, private db: AngularFireDatabase ) { 
+    this.item = db.object('/item').valueChanges();
+  }
+  item: Observable<any>
   todo = [];
   done = [];
   myForm: FormGroup;
